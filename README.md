@@ -4,6 +4,8 @@
 
 **Your AI-powered investment companion.** Backtest strategies, track your portfolio, and compete on the leaderboard — all in a sleek, cyberpunk interface.
 
+**Built for Taiwan's ETF era.** Every listed active ETF, with its NAV and its market price always read from the *same* source on the *same* date — so the discount/premium (折溢價) in front of you is one you could actually trade on, not an artefact of two feeds drifting apart.
+
 ## 🖼️ App Preview
 
 | Home | Mars Strategy | Compound Chart | Portfolio Insights | ETF Hub |
@@ -93,12 +95,52 @@ Specialized tools for Convertible Bond investors.
 - **Yield Hunter**: Alerts when premium falls below -1% (buy) or rises above 30% (sell)
 
 ### 9. ETF Hub — Active Discount/Premium Board 🪐
-A focused board for Taiwan-listed **active ETFs** that compares each fund's NAV to its market price.
+**The board we built because the number is so easy to get wrong.** A discount/premium (折溢價) figure only means something if the NAV and the market price come from the same source on the same date — and that is exactly what most tables quietly fail to guarantee. Ours is a focused board for Taiwan-listed **active ETFs**, built around that one rule.
 
+- **One honest reading, or none at all**: NAV, market price and 折溢價 always arrive together, out of a single scrape. If a fund cannot form an honest pair that day, the cell shows `—`. We would rather show you nothing than a premium that isn't real.
+- **Ex-rights aware, same day**: the official TWSE ex-dividend / ex-rights tables are re-crawled daily and merged upward-only, so a fund that has just gone ex-dividend is repriced in the same session instead of carrying a stale figure until the next refresh.
 - **Auto-curated**: The universe is sourced from the official **TWSE/TPEx ISIN registry** (refreshed daily). When a new active ETF is listed, it shows up automatically.
 - **One-glance health**: A green bar inside ±1% means the ETF is trading close to NAV. Amber means widening discount/premium worth attention.
 - **Switch the lens**: Quickly flip between Active, Passive, Leveraged, and Inverse universes.
-- **Free tier**: Yesterday's close NAV vs the same-day market close. **Premium/VIP**: live intraday tracking (rolling release).
+- **Free tier**: the live (frozen-close) NAV/price tuple whenever the market is closed — evenings, nights, weekends. Only *during* the 09:00–13:30 session does it fall back to yesterday's close NAV vs the same-day market close. **Premium/VIP**: live intraday tracking during the session too.
+
+**ETF Screener** — under ETF → 洞察 (Insights), the first sub-tab. Open to everyone, no sign-in needed.
+
+- **Filter by payout frequency**: monthly, quarterly, semiannual, annual, or no payout
+- **Filter by fund type**: active, passive, market-cap, high-dividend, bond
+- **Drag two sliders**: a minimum 1-year return and a minimum fund size — leave a slider at its far left for "no limit"
+- **Live count**: the number of matching funds updates as you adjust; tap any result card to open that fund
+- **Bookmark or share**: your filters are kept in the page address, so a filtered view can be saved or sent to a friend. **Reset** clears everything at once
+
+**All-ETF List** — under ETF → 總覽 (Overview), also open to everyone. Every Taiwan ETF we track, organised into groups (active, bond, leveraged/inverse, futures/ETN, market-cap, high-dividend, other passive) with a count beside each group. Tap a code to open that fund.
+
+**Every code is a link** — ETF codes shown in 每日焦點 (Daily Focus — swap radar, AUM flow, buy/sell radars, ETF concentration) and in 個股追蹤 (Stock Tracker) all open that fund's detail page. ⌘ / Ctrl / middle-click still opens a new tab as usual.
+
+**Fund Detail Page** — needs a free account. Visitors see the fund name and code, then a prompt to register for free (Google sign-in); no payment is involved.
+
+- **Summary strip on top**: closing price and daily change, discount/premium, dividend yield, fund size, payout frequency, and the date the numbers are from
+- **Tabs below**: holdings, sector breakdown, holdings changes, and fund size
+- **New shortcut**: tap any row in the 現股價格·淨值·折溢價 table to jump straight to that fund
+
+**Holdings Buy/Sell Analysis** — on the fund detail page's 異動 (Changes) tab, for Premium members and above.
+
+- Choose a period: today, or the last 5 / 10 / 20 / 60 trading days
+- See the fund's net buying, total bought, and total sold over that period
+- See the top 10 stocks it bought into and the top 10 it sold out of
+- Amounts are estimated from each day's official closing price
+
+**ETF Calculators** — the 定期定額 (regular investment) and 配息試算 (dividend estimate) tabs.
+
+- **Type-ahead fund search**: start typing a code or a name and pick from the suggestions, instead of hunting through a long dropdown
+- **Newly listed funds included**: when a fund does not yet have a full year of payout history, we show an estimate based on its current yield, clearly marked 預估 in amber
+
+**ETF Dividend Landing Analysis (配息落點分析)** — see in which months of the year your dividends actually land.
+
+- **Starts from what you hold**: your currently-held ETFs are pre-selected, each with a month-by-month payout row and a yearly total
+- **Compare any fund**: add any ETF with a number of lots (張數) to see how it would change your monthly income mix
+- **Check what you want summed**: tick or untick any row and the 已勾選加總 (selected total) row updates instantly
+- **Estimates fill the gaps**: months without a realized payout are filled with estimates based on the fund's current yield (schedule-aware for quarterly and semiannual funds), clearly marked 預估 in amber — and the yearly total turns amber whenever it includes estimates
+- **A confirmed ex-date never blanks out your year**: when an issuer has announced the ex-dividend date but not yet the amount (待公告), that month still shows its projected figure in amber instead of falling out of your yearly view. The realized total stays fact-only; the amber projected total carries the estimate, and it settles onto the real number the moment the issuer publishes.
 
 ### 10. Mars AI Copilot 🤖
 An intelligent investment assistant powered by Google Gemini.
@@ -115,12 +157,17 @@ An intelligent investment assistant powered by Google Gemini.
 
 | Feature | Guest | FREE | PREMIUM | VIP |
 |:--------|:------|:-----|:--------|:----|
-| **ETF NAV / Price** | ❌ | ✅ T-1 (yesterday) | ✅ Live | ✅ Live |
-| **ETF Discount/Premium (折溢價)** | ❌ | ✅ T-1 | ✅ Live | ✅ Live |
+| **ETF NAV / Price** | ❌ | ✅ Live after close / T-1 in session `*` | ✅ Live | ✅ Live |
+| **ETF Discount/Premium (折溢價)** | ❌ | ✅ Live after close / T-1 in session `*` | ✅ Live | ✅ Live |
 | **ETF Yield (殖利率)** | ❌ | ✅ | ✅ | ✅ |
 | **ETF Ranking / News** | ✅ | ✅ | ✅ | ✅ |
+| **ETF Screener / All-ETF List** | ✅ | ✅ | ✅ | ✅ |
+| **ETF Fund Detail Page** | ❌ | ✅ | ✅ | ✅ |
 | **ETF Snapshot / Delta / Overlap** | ❌ | ❌ | ✅ | ✅ |
-| **ETF Technicals / Compare / Calendar** | ❌ | ❌ | ✅ | ✅ |
+| **ETF Holdings Buy/Sell (持股買賣超)** | ❌ | ❌ | ✅ | ✅ |
+| **ETF Technicals / Compare** | ❌ | ❌ | ✅ | ✅ |
+| **ETF Dividend Calendar** | ❌ | ✅ | ✅ | ✅ |
+| **ETF Dividend Landing Analysis (配息落點分析)** | ❌ | ✅ | ✅ | ✅ |
 | **ETF Sync-add / Add Radar / Sell Radar** | ❌ | ❌ | ❌ | ✅ |
 | **Active-ETF Trust / Foreign Joint Net Buy-Sell Board** | ❌ | ❌ | ❌ | ✅ |
 | Mars Strategy | ✅ | ✅ | ✅ | ✅ |
@@ -129,6 +176,7 @@ An intelligent investment assistant powered by Google Gemini.
 | Compound Interest (Comparison) | 🔒 | 🔒 | ✅ | ✅ |
 | Portfolio Tracker | ✅ (Local) | ✅ | ✅ | ✅ |
 | Trend Dashboard | ❌ | ✅ | ✅ | ✅ |
+| Return Calendar | ❌ | ✅ | ✅ | ✅ |
 | My Portfolio Race | ❌ | ✅ | ✅ | ✅ |
 | Cash Ladder | ❌ | ✅ | ✅ | ✅ |
 | Portfolio Groups | 3 max | 11 max | 20 max | 30 max |
@@ -141,6 +189,13 @@ An intelligent investment assistant powered by Google Gemini.
 | Server-Side Data | ❌ | ✅ | ✅ | ✅ |
 | Priority Support | ❌ | ❌ | ❌ | ✅ |
 | Early Access | ❌ | ❌ | ❌ | ✅ |
+
+`*` **FREE's ETF freshness depends on whether the market is open, not on the tier
+alone.** During the Taipei session (09:00–13:30 Mon–Fri) FREE sees T-1 and the
+intraday tick is Premium/VIP-only. Every other hour — evenings, nights, weekends,
+holidays — **FREE sees the same live tuple the paid tiers do**, frozen on that day's
+close. Once the session ends the issuer estimate stops moving, so there is no
+real-time edge left to gate. Guests see nothing at either time.
 
 > **How to upgrade?** Go to ⚙️ Settings → Sponsor Us → choose Ko-fi or Buy Me a Coffee. Your membership will be activated!
 
