@@ -22,6 +22,10 @@ Marffet is a web-based investment simulation and portfolio management tool that 
 
 ### Access the App
 - **URL**: [https://marffet.zeabur.app](https://marffet.zeabur.app)
+- **New address (September 2026)**: Marffet used to live at `marffet-app.zeabur.app`.
+  The old address still works for now and will point you here, but please update your
+  bookmarks. If you were signed in before the change, just sign in once more — your
+  portfolio, holdings and history are all untouched.
 - **PWA Installation Note**: When adding Marffet to your Home Screen (PWA), please ensure you do so from the Home Grid (`/`) or your desired starting page. The PWA shortcut will persistently capture and launch the specific URL you were on during installation.
 - **Login Required**: To ensure peak performance and prevent heavy background loading, all features require you to **Sign in with your Google Account**.
 - **Guest Mode**: Explore the simulator and visualizations without creating an account by clicking "Explore as Guest".
